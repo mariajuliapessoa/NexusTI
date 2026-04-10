@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troca de Senha — Nexus TI</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    .senha-forca {
+      margin-top: 8px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .forca-barra {
+      height: 3px;
+      flex: 1;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.08);
+      transition: background 0.3s ease;
+    }
+
+    .forca-barra.ativa-fraca  { background: var(--cor-erro); }
+    .forca-barra.ativa-media  { background: #f59e0b; }
+    .forca-barra.ativa-forte  { background: var(--cor-sucesso); }
+
+    .forca-label {
+      font-size: 0.75rem;
+      color: var(--cor-texto-suave);
+      margin-top: 4px;
+    }
+
+    #form-auth.troca {
+      max-width: 480px;
+    }
+  </style>
+</head>
+
+<body class="auth-page">
+
+  <div style="position:relative; z-index:1; width:100%; max-width:480px; padding:2rem;">
+
+    <form id="form-auth" class="troca" novalidate aria-label="Formulário de troca de senha">
+
+      <div class="auth-logo">
+        <a href="../index.html" class="logo" style="justify-content:center; margin-bottom:0.5rem;">
+          <div class="logo-icone">NX</div>
+          <span class="logo-texto">Nexus<span>TI</span></span>
+        </a>
+        <h1 class="auth-titulo">Trocar senha</h1>
+        <p class="auth-subtitulo">Informe seu e-mail e defina uma nova senha segura.</p>
+      </div>
+
+      <div class="form-grupo" id="grupo-email">
+        <label for="email">E-mail cadastrado</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="seu@email.com"
+          autocomplete="email"
+          aria-required="true"
+          aria-describedby="erro-email" />
+        <span class="erro-msg" id="erro-email" role="alert"></span>
+      </div>
+
+      <div class="form-grupo" id="grupo-senha">
+        <label for="senha">Nova senha</label>
+        <input
+          type="password"
+          id="senha"
+          name="senha"
+          placeholder="••••••••"
+          autocomplete="new-password"
+          aria-required="true"
+          aria-describedby="erro-senha dica-senha" />
+
+        <div class="senha-forca" aria-hidden="true">
+          <div class="forca-barra" id="barra1"></div>
+          <div class="forca-barra" id="barra2"></div>
+          <div class="forca-barra" id="barra3"></div>
+          <div class="forca-barra" id="barra4"></div>
+        </div>
+        <span class="forca-label" id="forca-label"></span>
+
+        <small id="dica-senha" style="display:block; margin-top:6px; color:var(--cor-texto-suave); font-size:0.78rem; line-height:1.6;">
+          Mínimo 6 caracteres · 1 número · 1 maiúscula · 1 especial (@ # $ % &amp; * ! ? / \ | - _ + . =)
+        </small>
+
+        <span class="erro-msg" id="erro-senha" role="alert"></span>
+      </div>
+
+      <div class="form-grupo" id="grupo-confirmar">
+        <label for="confirmar">Confirmar nova senha</label>
+        <input
+          type="password"
+          id="confirmar"
+          name="confirmar"
+          placeholder="••••••••"
+          autocomplete="new-password"
+          aria-required="true"
+          aria-describedby="erro-confirmar" />
+        <span class="erro-msg" id="erro-confirmar" role="alert"></span>
+      </div>
+
+      <div class="auth-botoes">
+        <button type="submit" class="btn btn-primario">Salvar senha</button>
+        <button type="button" class="btn btn-secundario" id="btn-limpar">Limpar</button>
+      </div>
+
+      <div class="auth-links" style="justify-content:center;">
+        <a href="login.html">← Voltar ao login</a>
+      </div>
+
+    </form>
+  </div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/troca-senha.js"></script>
+</body>
+</html>

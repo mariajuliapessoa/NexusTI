@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Painel — Nexus TI</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    .painel .tabela-pedidos td:last-child {
+      text-align: center;
+    }
+
+    .num-pedido {
+      font-family: var(--fonte-mono);
+      font-size: 0.85rem;
+      color: var(--cor-acento);
+    }
+
+    .valor-preco {
+      font-family: var(--fonte-titulo);
+      font-weight: 700;
+      color: var(--cor-branco);
+    }
+
+    .linha-vazia td {
+      text-align: center;
+      color: var(--cor-texto-suave);
+      font-style: italic;
+      padding: 2rem;
+    }
+
+    input:disabled, select:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .aviso-login {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .aviso-login p {
+      color: var(--cor-texto-suave);
+      margin-bottom: 1.5rem;
+    }
+
+    @keyframes rowEnter {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .linha-nova {
+      animation: rowEnter 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-inner">
+        <a href="../index.html" class="logo">
+          <div class="logo-icone">NX</div>
+          <span class="logo-texto">Nexus<span>TI</span></span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="link-nav">← Início</a></li>
+          <li>
+            <button class="btn btn-secundario" onclick="sair()" style="cursor:pointer;">Sair</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-servicos">
+    <div class="container">
+
+      <div id="aviso-login" class="aviso-login" style="display:none;">
+        <div class="painel">
+          <h2 style="margin-bottom:1rem;">Acesso restrito</h2>
+          <p>Você precisa estar logado para acessar o painel de serviços.</p>
+          <a href="login.html" class="btn btn-primario">Fazer login</a>
+          <span style="color:var(--cor-texto-suave); margin:0 0.5rem;">ou</span>
+          <a href="cadastro.html" class="btn btn-secundario">Criar conta</a>
+        </div>
+      </div>
+
+      <div id="conteudo-painel" style="display:none;">
+
+        <div style="margin-bottom:2rem;">
+          <span class="tag-acento">// Painel do cliente</span>
+          <h1 style="font-size:clamp(1.6rem,3vw,2.2rem); margin-top:0.5rem;">Meus serviços</h1>
+        </div>
+
+        <section class="painel" aria-label="Dados do usuário">
+          <h2 class="painel-titulo">👤 Dados do cliente</h2>
+          <div class="usuario-info">
+            <div class="usuario-campo">
+              <span>Nome</span>
+              <span id="info-nome">—</span>
+            </div>
+            <div class="usuario-campo">
+              <span>E-mail</span>
+              <span id="info-email">—</span>
+            </div>
+            <div class="usuario-campo">
+              <span>Status</span>
+              <span class="status-badge">Cliente ativo</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="painel" aria-label="Pedidos do cliente">
+          <h2 class="painel-titulo">📋 Meus pedidos</h2>
+          <div style="overflow-x:auto;">
+            <table class="tabela-pedidos" aria-label="Tabela de pedidos">
+              <thead>
+                <tr>
+                  <th scope="col">Data pedido</th>
+                  <th scope="col">Nº</th>
+                  <th scope="col">Serviço</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Preço</th>
+                  <th scope="col">Data prevista</th>
+                  <th scope="col">Ação</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-body">
+                <tr class="linha-vazia">
+                  <td colspan="7">Nenhum pedido encontrado. Solicite um serviço abaixo.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="painel" aria-label="Nova solicitação de serviço">
+          <h2 class="painel-titulo">➕ Nova solicitação</h2>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem;" id="form-grid">
+
+            <div class="form-grupo" id="grupo-servico" style="grid-column: 1 / -1;">
+              <label for="sel-servico">Serviço <abbr title="obrigatório">*</abbr></label>
+              <select id="sel-servico" aria-required="true" aria-describedby="erro-servico">
+                <option value="">— Selecione um serviço —</option>
+                <option value="seguranca"  data-preco="4500.00"  data-prazo="30">🛡️ Segurança da Informação</option>
+                <option value="cloud"      data-preco="3200.00"  data-prazo="20">☁️ Cloud Computing</option>
+                <option value="suporte"    data-preco="800.00"   data-prazo="5">⚙️ Suporte Técnico</option>
+                <option value="software"   data-preco="12000.00" data-prazo="60">💻 Desenvolvimento de Software</option>
+                <option value="bi"         data-preco="6500.00"  data-prazo="45">📊 Business Intelligence</option>
+                <option value="backup"     data-preco="1200.00"  data-prazo="10">🔄 Backup e Recuperação</option>
+              </select>
+              <span class="erro-msg" id="erro-servico" role="alert"></span>
+            </div>
+
+            <div class="form-grupo">
+              <label for="inp-preco">Preço (R$)</label>
+              <input type="text" id="inp-preco" readonly disabled placeholder="Automático" />
+            </div>
+
+            <div class="form-grupo">
+              <label for="inp-prazo">Prazo (dias)</label>
+              <input type="text" id="inp-prazo" readonly disabled placeholder="Automático" />
+            </div>
+
+            <div class="form-grupo">
+              <label for="inp-data-prev">Data prevista de entrega</label>
+              <input type="text" id="inp-data-prev" readonly disabled placeholder="Automático" />
+            </div>
+
+            <div class="form-grupo">
+              <label for="inp-status">Status</label>
+              <input type="text" id="inp-status" value="EM ELABORAÇÃO" readonly disabled />
+            </div>
+
+          </div>
+
+          <div style="margin-top:0.5rem;">
+            <button class="btn btn-primario" id="btn-adicionar">➕ Adicionar pedido</button>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/servicos.js"></script>
+</body>
+</html>
