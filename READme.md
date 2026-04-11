@@ -67,10 +67,6 @@ Painel de serviços com acesso restrito, seleção de serviços com cálculo aut
 
 Validação de e-mail com regex, senha com requisitos mínimos de segurança, confirmação de senha, nome completo com múltiplas palavras, CPF com verificação de dígitos, idade mínima de 18 anos, telefone opcional com máscara e escolaridade obrigatória. Erros são exibidos abaixo dos campos com foco automático no primeiro erro.
 
-## Caminhos e Referências
-
-Páginas dentro de pages utilizam caminhos relativos para acessar recursos do diretório pai, como ../css/style.css e ../js/*. A página index.html referencia diretamente css/style.css, js/utils.js e js/index.js, além de links para páginas internas dentro da pasta pages.
-
 ## Como Executar
 
 O projeto deve ser executado em servidor local devido ao uso de módulos JavaScript e embed de vídeo. Abrir via file:// pode causar erros.
