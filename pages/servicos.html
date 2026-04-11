@@ -10,9 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    .painel .tabela-pedidos td:last-child {
-      text-align: center;
-    }
+    .painel .tabela-pedidos td:last-child { text-align: center; }
 
     .num-pedido {
       font-family: var(--fonte-mono);
@@ -53,9 +51,7 @@
       to   { opacity: 1; transform: translateX(0); }
     }
 
-    .linha-nova {
-      animation: rowEnter 0.3s ease;
-    }
+    .linha-nova { animation: rowEnter 0.3s ease; }
   </style>
 </head>
 
@@ -143,7 +139,7 @@
         <section class="painel" aria-label="Nova solicitação de serviço">
           <h2 class="painel-titulo">➕ Nova solicitação</h2>
 
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem;" id="form-grid">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem;">
 
             <div class="form-grupo" id="grupo-servico" style="grid-column: 1 / -1;">
               <label for="sel-servico">Serviço <abbr title="obrigatório">*</abbr></label>
