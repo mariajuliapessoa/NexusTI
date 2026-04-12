@@ -125,13 +125,46 @@
       margin-top: 2rem;
     }
 
-    .video-container iframe {
+    .video-play-link {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      border: none;
+      display: block;
+      text-decoration: none;
+    }
+
+    .video-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s ease;
+    }
+
+    .video-play-link:hover .video-thumb {
+      filter: brightness(0.7);
+    }
+
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .video-container:hover .video-play-btn {
+      transform: translate(-50%, -50%) scale(1.12);
+      opacity: 1;
+    }
+
+    .video-container:hover .video-thumb {
+      filter: brightness(0.7);
     }
   </style>
 </head>
@@ -142,10 +175,13 @@
     <div class="container">
       <nav class="nav-inner">
 
-        <a href="index.html" class="logo" aria-label="Nexus TI — Página inicial">
-          <div class="logo-icone" aria-hidden="true">NX</div>
-          <span class="logo-texto">Nexus<span>TI</span></span>
-        </a>
+        <div class="logo-grupo">
+          <a href="index.html" class="logo" aria-label="Nexus TI — Página inicial">
+            <div class="logo-icone" aria-hidden="true">NX</div>
+            <span class="logo-texto">Nexus<span>TI</span></span>
+          </a>
+          <span class="logo-frase">Soluções em TI desde 2010</span>
+        </div>
 
         <ul class="nav-links" id="nav-links">
           <li><a href="#sobre" class="link-nav">Sobre</a></li>
@@ -259,15 +295,25 @@
         <p>Assista e entenda como transformamos negócios através da tecnologia.</p>
 
         <div class="video-container">
-          <iframe
-            src="https://www.youtube.com/embed/O41Nm6l0sbY"
-            title="Vídeo institucional Nexus TI"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-            loading="lazy">
-          </iframe>
+          <a
+            href="https://www.youtube.com/watch?v=O41Nm6l0sbY"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="video-play-link"
+            aria-label="Assistir vídeo institucional no YouTube">
+            <img
+              src="https://img.youtube.com/vi/O41Nm6l0sbY/hqdefault.jpg"
+              alt="Vídeo institucional Nexus TI"
+              class="video-thumb"
+              loading="lazy"
+              onerror="this.src='https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1280&q=80'" />
+          </a>
+          <div class="video-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 68 48" width="72" height="52">
+              <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56 0 34 0 34 0S12 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.1 0 24 0 24s0 11.9 1.5 16.3a8.5 8.5 0 0 0 6 6C12 48 34 48 34 48s22 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.9 68 24 68 24s0-11.9-1.5-16.3z" fill="#ff0000"/>
+              <path d="M45 24 27 14v20" fill="#fff"/>
+            </svg>
+          </div>
         </div>
       </div>
     </section>
@@ -409,9 +455,9 @@
           <div style="margin-top:1.5rem;">
             <p class="footer-titulo">Formas de pagamento</p>
             <div class="pagamentos">
-              <span class="pagamento-badge" style="color:#1a73e8;">Visa</span>
-              <span class="pagamento-badge" style="color:#eb001b;">Mastercard</span>
-              <span class="pagamento-badge" style="color:#32bcad;">Pix</span>
+              <span class="pagamento-badge">Visa</span>
+              <span class="pagamento-badge">Mastercard</span>
+              <span class="pagamento-badge">Pix</span>
               <span class="pagamento-badge">Boleto</span>
               <span class="pagamento-badge">NF-e</span>
             </div>
@@ -430,7 +476,7 @@
               <span style="display:block; font-size:0.78rem; color:var(--cor-texto-suave); margin-top:2px;">WhatsApp — Atendimento rápido</span>
             </li>
             <li style="margin-top:0.8rem;">
-              ✉️ <a href="mailto:contato@nexusti.com.br">contato@nexusti.com.br</a>
+              ✉️ <a href="/cdn-cgi/l/email-protection#54373b3a2035203b143a312c2127203d7a373b397a3626"><span class="__cf_email__" data-cfemail="a6c5c9c8d2c7d2c9e6c8c3ded3d5d2cf88c5c9cb88c4d4">[email&#160;protected]</span></a>
             </li>
           </ul>
         </div>
@@ -448,13 +494,4 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2024 Nexus TI — Todos os direitos reservados. Projeto acadêmico de front-end.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/utils.js"></script>
-  <script src="js/index.js"></script>
-
-</body>
-</html>
+        <p>© 2024 Nexus TI — Todos os direitos reservados. Projeto acadêmico de fron

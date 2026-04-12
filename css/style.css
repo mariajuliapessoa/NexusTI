@@ -316,6 +316,41 @@ tr:hover td {
   text-decoration: none;
 }
 
+.logo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-frase {
+  font-size: 0.7rem;
+  color: var(--cor-texto-suave);
+  font-family: var(--fonte-mono);
+  letter-spacing: 0.06em;
+  padding-left: 54px;
+}
+
+a[target="_blank"] {
+  position: relative;
+}
+
+a[target="_blank"]::after {
+  content: ' ↗';
+  font-size: 0.75em;
+  opacity: 0.6;
+}
+
+input[aria-required="true"]:focus {
+  border-color: var(--cor-acento);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+input[readonly] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.02);
+}
+
 .logo-icone {
   width: 42px;
   height: 42px;
@@ -421,11 +456,19 @@ tr:hover td {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--cor-borda);
   border-radius: 6px;
-  padding: 6px 12px;
-  font-size: 0.75rem;
+  padding: 8px 16px;
+  font-size: 0.8rem;
   font-family: var(--fonte-mono);
-  color: var(--cor-texto-suave);
-  letter-spacing: 0.03em;
+  font-weight: 500;
+  color: var(--cor-texto);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background var(--transicao), border-color var(--transicao);
+}
+
+.pagamento-badge:hover {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: var(--cor-acento);
 }
 
 .footer-bottom {
